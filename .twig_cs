@@ -1,0 +1,13 @@
+<?php
+
+$finderA = FriendsOfTwig\Twigcs\Finder\TemplateFinder::create()->in(__DIR__.'/templates');
+$finderB = FriendsOfTwig\Twigcs\Finder\TemplateFinder::create()->in(__DIR__.'/.demo/templates');
+
+return \FriendsOfTwig\Twigcs\Config\Config::create()
+    // ...
+    ->addFinder($finderA)
+    ->addFinder($finderB)
+    ->setName('my-config')
+    ->setSeverity('ignore')
+
+;
