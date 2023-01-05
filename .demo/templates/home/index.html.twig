@@ -1,57 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block head_title %}
-    Hello HomeController!
+    TreeBundle
 {% endblock %}
 
 {% block main %}
-    <style>
-        .example-wrapper {
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px / 1.5 sans-serif;
-        }
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
-        }
-    </style>
-
-    <div class="example-wrapper">
-        <h1>Hello
-            {{ controller_name }}! ✅</h1>
-
-        This friendly message is coming from:
-        <ul>
-            <li>Your controller at
-                <code>
-                    <a href="{{ '/home/mazarini/Workspace/tree-bundle/sources/.demo/src/Controller/HomeController.php'|file_link(0) }}">
-                        src/Controller/HomeController.php
-                    </a>
-                </code>
-            </li>
-            <li>Your template at
-                <code>
-                    <a href="{{ '/home/mazarini/Workspace/tree-bundle/sources/.demo/templates/home/index.html.twig'|file_link(0) }}">
-                        templates/home/index.html.twig
-                    </a>
-                </code>
-            </li>
-            <li>Your Bundle class at
-                <code>
-                    <a href="{{ '/home/mazarini/Workspace/tree-bundle/sources/templates/dummy.html.twig'|file_link(0) }}">
-                        {{ object }}
-                    </a>
-                </code>
-            </li>
-            <li>Your Bundle template at
-                <code>
-                    <a href="{{ '/home/mazarini/Workspace/tree-bundle/sources/templates/dummy.html.twig'|file_link(0) }}">
-                        {% include '@MazariniTree/dummy.html.twig' %}
-                    </a>
-                </code>
-            </li>
-        </ul>
+    <h1>Services</h1>
+    {% for name, service in services %}
+        <h2>
+            Service
+            {{ name }}
+        </h2>
+        {{ dump(service) }}
+    {% endfor %}
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-kernel-tab" data-bs-toggle="tab" data-bs-target="#nav-kernel" type="button" role="tab" aria-controls="nav-kernel" aria-selected="true">kernel</button>
+            <button class="nav-link" id="nav-container-tab" data-bs-toggle="tab" data-bs-target="#nav-container" type="button" role="tab" aria-controls="nav-container" aria-selected="false">container</button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-kernel" role="tabpanel" aria-labelledby="nav-kernel-tab">{{ dump(kernel) }}</div>
+        <div class="tab-pane fade" id="nav-container" role="tabpanel" aria-labelledby="nav-container-tab">{{ dump(container) }}</div>
     </div>
 {% endblock %}

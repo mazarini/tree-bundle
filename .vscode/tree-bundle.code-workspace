@@ -54,6 +54,7 @@
             "irongeek.vscode-env",
             "mhutchie.git-graph",
             "xdebug.php-debug",
+            "bmewburn.vscode-intelephense-client",
             "higoka.php-cs-fixer",
             "ronvanderheijden.phpdoc-generator",
             "mykhailokushnir.vscode-php-getter-setter",

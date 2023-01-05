@@ -21,7 +21,7 @@
 
 namespace App\Controller;
 
-use Mazarini\TreeBundle\Dummy;
+use App\Kernel;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,11 +29,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(): Response
+    public function index(Kernel $kernel): Response
     {
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-            'object' => new Dummy(),
+        $template = sprintf('home/%s.html.twig', 'index');
+        $container = $kernel->getContainer();
+
+        $names[] = 'Mazarini\TreeBundle\Dummy';
+        $names[] = 'mazarini_tree_dummy';
+
+        $services = [];
+        foreach ($names as $name) {
+            $services[$name] = $container->get($name);
+        }
+
+        return $this->render($template, [
+            'kernel' => $kernel,
+            'container' => $container,
+            'services' => $services,
         ]);
     }
 }

@@ -19,15 +19,16 @@
  * @package Mazarini/TreeBundle
  */
 
-namespace Mazarini\TreeBundle;
+namespace Mazarini\TreeBundle\Tests;
 
-class Dummy implements \Stringable
+use Mazarini\TreeBundle\MazariniTreeBundle;
+use PHPUnit\Framework\TestCase;
+
+class MazariniTreeBundleTest extends TestCase
 {
-    private string $dummyString = 'dummy';
-    private int $dummyInt = 42;
-
-    public function __toString(): string
+    public function testPath(): void
     {
-        return self::class;
+        $bundle = new MazariniTreeBundle();
+        $this->assertSame($bundle->getPath(), \dirname(__DIR__));
     }
 }

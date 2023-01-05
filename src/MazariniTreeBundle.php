@@ -21,6 +21,8 @@
 
 namespace Mazarini\TreeBundle;
 
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
 class MazariniTreeBundle extends AbstractBundle
@@ -28,5 +30,18 @@ class MazariniTreeBundle extends AbstractBundle
     public function getPath(): string
     {
         return \dirname(__DIR__);
+    }
+
+    /**
+     * @param array<string,mixed> $config
+     */
+    public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
+    {
+        // load an XML, PHP or Yaml file
+        $container->import('../config/services.yaml');
+
+        $container->parameters()
+           ->set('mazarini_tree.bundle_path', $this->getPath())
+        ;
     }
 }
